@@ -14,7 +14,6 @@ from random import choice,randint
 pymix.init()
 calculation = ""
 calculation_text = ""
-player = ""
 
 # Main function
 def runNivi():
@@ -65,14 +64,7 @@ def runNivi():
                 if not audio:
                     audio = recorder.listen(source, timeout=5)
             except UnboundLocalError:
-                try:
-                    """recorder = sr.Recognizer()
-                    with sr.Microphone() as source:
-                        recorder.adjust_for_ambient_noise(source)
-                        audio = recorder.listen(source)"""
-                    print("Coming here")
-                except:
-                    pass
+                pass
         voice = recorder.recognize_google(audio, language="en-US")
         print(f"You said:{voice}")
         return voice
@@ -134,7 +126,7 @@ def runNivi():
 
         def check_winner():
 
-            # Checking each row, column and diagonals for a win
+            # Checking each row, column and diagonal for a win
             for row in range(3):
                 if buttons[row][0]['text'] == buttons[row][1]['text'] == buttons[row][2]['text'] != "":
                     buttons[row][0].config(bg="green")
@@ -194,7 +186,7 @@ def runNivi():
 
             label.config(text=player + " turn")
 
-            # Reset the buttons and restore default colors
+            # Reset the buttons and restore default colours
             for row in range(3):
                 for column in range(3):
                     buttons[row][column].config(text="", bg="#F0F0F0")
